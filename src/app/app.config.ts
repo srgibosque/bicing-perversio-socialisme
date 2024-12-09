@@ -22,6 +22,5 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore())
-
   ]
 };

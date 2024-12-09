@@ -18,7 +18,7 @@ export class LiadesListComponent implements OnInit {
   ngOnInit(): void {
     this.liadesFirebaseService.getLiades()
       .subscribe(liades => {
-        this.liades = liades;
+        this.liades = liades.sort((a, b) => b.times - a.times);
       })
   }
 }

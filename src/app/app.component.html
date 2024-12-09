@@ -1,10 +1,21 @@
+<header>
+  <div class="image-container">
+    <img src="../assets/icons/Bicing_logo.svg" alt="logo del bicing">
+  </div>
+  <h1 class="title">, perversió i socialisme</h1>
+</header>
+
 <main>
   <router-outlet></router-outlet>
 </main>
 
-<footer>
-  <ul>
-    <li><a [routerLink]="['/liades/add']">Add</a></li>
-    <li><a [routerLink]="['/liades/update']">Update</a></li>
+<footer class="bottom-fixed-container">
+  <ul class="btns">
+    <li>
+      <button class="btn btn-primary rubik-medium" [routerLink]="['/liades/add']">Add</button>
+    </li>
+    <li>
+      <button class="btn btn-primary rubik-medium" [routerLink]="['/liades/update']">Update</button>
+    </li>
   </ul>
 </footer>

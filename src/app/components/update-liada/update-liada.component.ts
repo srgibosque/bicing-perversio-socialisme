@@ -3,11 +3,12 @@ import { LiadesFirebaseService } from '../../services/liades-firebase.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Liada } from '../../models/liada.interface';
 import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-update-liada',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './update-liada.component.html',
   styleUrl: './update-liada.component.scss'
 })
@@ -16,6 +17,7 @@ export class UpdateLiadaComponent implements OnInit {
   liades: Liada[] = [];
 
   liadesFirebaseService = inject(LiadesFirebaseService);
+  router = inject(Router);
 
   constructor(private fb: FormBuilder) {}
 
@@ -35,6 +37,7 @@ export class UpdateLiadaComponent implements OnInit {
       this.liadesFirebaseService.incrementTimes(selectedLiadaId).subscribe({
         next: () => {
           console.log('Times incremented successfully!');
+          this.router.navigate(['/liades']);
         },
         error: (err) => {
           console.error('Error incrementing times:', err);

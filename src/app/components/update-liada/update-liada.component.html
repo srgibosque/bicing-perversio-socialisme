@@ -1,1 +1,9 @@
-<p>update-liada works!</p>
+<form [formGroup]="incrementForm" (ngSubmit)="onSubmit()">
+  <label for="liada">Select Liada:</label>
+  <select id="liada" formControlName="selectedLiada">
+    <option value="" disabled>Select a liada</option>
+    <option *ngFor="let liada of liades" [value]="liada.id">{{ liada.name }}</option>
+  </select>
+
+  <button type="submit" [disabled]="incrementForm.invalid">Increment Times</button>
+</form>

@@ -1,0 +1,17 @@
+<div class="liades-container">
+  <h2>Liades List</h2>
+
+  <ul *ngIf="liades.length; else noLiades">
+    <li *ngFor="let liada of liades">
+      <strong>ID:</strong> {{ liada.id }} <br>
+      <strong>Name:</strong> {{ liada.name }} <br>
+      <strong>Times:</strong> {{ liada.times }}
+    </li>
+  </ul>
+
+  <ng-template #noLiades>
+    <p>No liades found.</p>
+  </ng-template>
+</div>
+
+<router-outlet></router-outlet>

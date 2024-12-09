@@ -1,0 +1,15 @@
+<div class="container">
+  <form [formGroup]="addLiadaForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" />
+      
+      <!-- Display an error message if the form control is invalid -->
+      <div *ngIf="addLiadaForm.get('name')?.invalid && addLiadaForm.get('name')?.touched">
+        <p class="error">Name is required!</p>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="addLiadaForm.invalid">Submit</button>
+  </form>
+</div>

@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, collectionData, doc, Firestore, increment, updateDoc } from '@angular/fire/firestore';
+import { collection, collectionData, deleteDoc, doc, Firestore, increment, updateDoc } from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
 import { Liada } from '../models/liada.interface';
 import { addDoc, DocumentReference } from 'firebase/firestore';
@@ -20,9 +20,15 @@ export class LiadesFirebaseService {
   }
 
   addLiada(name: string): Observable<string> {
-    const toCreateLiada: Liada = { name: name, times: 0 }
+    const toCreateLiada: { name: string, times: number } = { name: name, times: 0 }
     const promise = addDoc(this.liadesCollection, toCreateLiada)
       .then((res) => res.id);
+    return from(promise);
+  }
+
+  deleteLiada(liadaId: string): Observable<void> {
+    const docRef: DocumentReference = doc(this.firestore, 'liades', liadaId);
+    const promise = deleteDoc(docRef);
     return from(promise);
   }
 

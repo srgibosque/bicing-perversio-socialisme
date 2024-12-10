@@ -13,6 +13,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 })
 export class LiadesListComponent implements OnInit {
   liades: Liada[] = [];
+  isDeleteButtonShown = false;
   liadesFirebaseService = inject(LiadesFirebaseService);
 
   ngOnInit(): void {
@@ -20,5 +21,17 @@ export class LiadesListComponent implements OnInit {
       .subscribe(liades => {
         this.liades = liades.sort((a, b) => b.times - a.times);
       })
+  }
+
+
+  toggleDeleteButton(): void {
+    this.isDeleteButtonShown = !this.isDeleteButtonShown;
+  }
+
+  deleteLiada(liadaId: string): void {
+    this.liadesFirebaseService.deleteLiada(liadaId).subscribe(() => {
+      console.log('Liada deleted successfully!');
+      this.liades = this.liades.filter(liada => liada.id !== liadaId);
+    })
   }
 }

@@ -8,12 +8,17 @@ body {
   margin: 16px;
 }
 
-main {
-  margin: 2rem auto;
+
+.max-width {
   max-width: 600px;
+  margin: 0 auto;
 }
 
-.title{
+.main-margin {
+  margin: 2rem auto;
+}
+
+.title {
   margin: 0.5rem 0;
 }
 
@@ -22,6 +27,12 @@ main {
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 7rem;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  padding: 1rem;
 }
 
 .column-layout {
@@ -31,11 +42,33 @@ main {
   align-items: stretch;
 }
 
+.column-layout-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
 .row-layout {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
+}
+
+.row-layout-small {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.floating{
+  position: absolute;
+  top: -16px; 
+  right: -16px;
+  cursor: pointer;
 }
 
 .bottom-fixed-container {
@@ -60,7 +93,7 @@ main {
   width: 100%;
 }
 
-.icon-btn{
+.icon-btn {
   display: flex;
   padding: 4px;
 }
@@ -86,22 +119,22 @@ main {
   z-index: 1000;
 }
 
-.input{
+.input {
   padding: 0.8rem;
   width: 100%;
 }
 
-.image-container{
+.image-container {
   object-fit: cover;
   padding: 1rem;
 }
 
-img{
+img {
   width: 200px;
   max-width: 100%;
   height: auto;
 }
 
-.error{
+.error {
   padding: 0.5rem;
 }

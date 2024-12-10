@@ -1,21 +1,21 @@
-<header>
+<header class="max-width">
   <div class="image-container">
     <img src="../assets/icons/Bicing_logo.svg" alt="logo del bicing">
   </div>
   <h1 class="title">, perversió i socialisme</h1>
 </header>
 
-<main>
+<main class="max-width main-margin">
   <router-outlet></router-outlet>
 </main>
 
 <footer class="bottom-fixed-container">
-  <ul class="btns">
+  <ul class="btns max-width">
     <li>
-      <button class="btn btn-primary rubik-medium" [routerLink]="['/liades/add']">Add</button>
+      <button class="btn btn-primary rubik-medium" [routerLink]="['/liades/add']">Afegeix una liada</button>
     </li>
     <li>
-      <button class="btn btn-primary rubik-medium" [routerLink]="['/liades/update']">Update</button>
+      <button class="btn btn-primary rubik-medium" [routerLink]="['/liades/update']">Quina han fet ara?</button>
     </li>
   </ul>
 </footer>

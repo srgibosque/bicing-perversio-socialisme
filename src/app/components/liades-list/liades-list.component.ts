@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Liada } from '../../models/liada.interface';
 import { LiadesFirebaseService } from './../../services/liades-firebase.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-liades-list',

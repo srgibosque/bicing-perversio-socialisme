@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })
@@ -16,7 +16,7 @@ export class SignUpComponent {
   fb = inject(FormBuilder);
   // http = inject(HttpClient);
   router = inject(Router);
-  authService = inject(AuthService);
+  private authService = inject(AuthService);
 
   signupForm = this.fb.nonNullable.group({
     username: ['', Validators.required],
@@ -24,12 +24,17 @@ export class SignUpComponent {
     password: ['', Validators.required]
   });
 
-  onSubmit() {
-    const rawForm = this.signupForm.getRawValue();
-    this.authService.signup(rawForm.email, rawForm.username, rawForm.password)
-    .subscribe({
-      next: () => this.router.navigate(['/login']),
-      error: (err) => this.errorMessage = err.code
-    });
+  async onSubmit(): Promise<void> {
+    if (this.signupForm.invalid) return;
+
+    try {
+      await this.authService.signup(
+        this.signupForm.value.email || '',
+        this.signupForm.value.password || ''
+      );
+      this.router.navigate(['/auth/login']);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }

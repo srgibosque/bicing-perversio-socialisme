@@ -1,15 +1,27 @@
-<header class="max-width">
+
+<!-- <header class="max-width">
   <div class="image-container">
     <img src="../assets/icons/Bicing_logo.svg" alt="logo del bicing">
   </div>
   <h1 class="title">, perversió i socialisme</h1>
 </header>
+<app-login></app-login>
+<p>No tens un compte? <a [routerLink]="'/signup'">Regístrate</a></p> -->
 
-<main class="max-width main-margin">
-  <router-outlet></router-outlet>
-</main>
+  <main class="max-width main-margin">
+    <router-outlet></router-outlet>
+     <!-- <app-liades-list></app-liades-list> -->
+  </main>
 
-<footer class="bottom-fixed-container">
+  <footer>
+    <app-navbar></app-navbar>
+  </footer>
+
+
+
+
+
+<!-- <footer class="bottom-fixed-container">
   <button (click)="logout()">Logout</button>
   <ul class="btns max-width">
     <li>
@@ -19,4 +31,4 @@
       <button class="btn btn-primary rubik-medium" [routerLink]="['/liades/update']">Quina han fet ara?</button>
     </li>
   </ul>
-</footer>
+</footer> -->

@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -16,19 +16,24 @@ export class LoginComponent {
   fb = inject(FormBuilder);
   // http = inject(HttpClient);
   router = inject(Router);
-   authService = inject(AuthService);
+  private authService = inject(AuthService);
 
   loginForm = this.fb.nonNullable.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
   });
 
-  onSubmit() {
-    const rawForm = this.loginForm.getRawValue();
-    this.authService.login(rawForm.email, rawForm.password)
-    .subscribe({
-      next: () => this.router.navigate(['/']),
-      error: (err) => this.errorMessage = err.code
-    });
+  async onSubmit(): Promise<void> {
+    if (this.loginForm.invalid) return;
+
+    try {
+      await this.authService.login(
+        this.loginForm.value.email || '', 
+        this.loginForm.value.password  || ''
+      );
+      this.router.navigate(['/']);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }

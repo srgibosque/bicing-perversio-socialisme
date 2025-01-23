@@ -1,10 +1,11 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { from, Observable } from 'rxjs';
-import { Auth, updateProfile, user } from '@angular/fire/auth';
+import { Auth, authState, updateProfile, user } from '@angular/fire/auth';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  UserCredential
 } from 'firebase/auth';
 import { User } from '../models/user.interface';
 
@@ -13,25 +14,28 @@ import { User } from '../models/user.interface';
 })
 export class AuthService {
   firebaseAuth = inject(Auth);
-  user$ = user(this.firebaseAuth);
-  currentUserSig = signal<User | null | undefined>(undefined);
+  readonly authState$ = authState(this.firebaseAuth)
+  // user$ = user(this.firebaseAuth);
+  // currentUserSig = signal<User | null | undefined>(undefined);
 
-  signup(email: string, username: string, password: string): Observable<void> {
-    const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)
-      .then(response => updateProfile(response.user, { displayName: username }));
-
-    return from(promise);
+  signup(email: string, password: string): Promise<UserCredential | void> {
+    return createUserWithEmailAndPassword(
+      this.firebaseAuth,
+      email,
+      password
+    );
   }
 
-  login(email: string, password: string): Observable<void> {
-    const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password)
-      .then(() => { });
-    return from(promise);
+  login(email: string, password: string): Promise<UserCredential> {
+    return signInWithEmailAndPassword(
+      this.firebaseAuth,
+      email,
+      password
+    );
   }
 
-  logout(): Observable<void> {
-    const promise = signOut(this.firebaseAuth);
-    return from(promise);
+  logout(): Promise<void> {
+    return this.firebaseAuth.signOut();
   }
 
 }

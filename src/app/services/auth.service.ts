@@ -1,29 +1,44 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { from, Observable } from 'rxjs';
-import { Auth, authState, updateProfile, user } from '@angular/fire/auth';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Auth, authState, updateProfile } from '@angular/fire/auth';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   UserCredential
 } from 'firebase/auth';
-import { User } from '../models/user.interface';
+import { User as FirebaseUser } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   firebaseAuth = inject(Auth);
-  readonly authState$ = authState(this.firebaseAuth)
-  // user$ = user(this.firebaseAuth);
-  // currentUserSig = signal<User | null | undefined>(undefined);
+  readonly authState$: Observable<FirebaseUser | null> = authState(this.firebaseAuth);
 
-  signup(email: string, password: string): Promise<UserCredential | void> {
-    return createUserWithEmailAndPassword(
-      this.firebaseAuth,
-      email,
-      password
-    );
+  getCurrentUser(): Observable<FirebaseUser | null> {
+    return this.authState$;
+  }
+
+  async signup( email: string, password: string, displayName: string ): Promise<UserCredential> {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        this.firebaseAuth,
+        email,
+        password
+      );
+  
+      const user = userCredential.user;
+      if (user) {
+        await updateProfile(user, { displayName });
+      }
+  
+      return userCredential;
+
+    } catch (error) {
+      console.error('Error during signup:', error);
+      throw error;
+    }
   }
 
   login(email: string, password: string): Promise<UserCredential> {

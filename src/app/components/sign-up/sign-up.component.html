@@ -1,4 +1,4 @@
-<h1>Sign Up</h1>
+<h1>Registra't</h1>
 
 @if(errorMessage){
   <p>{{errorMessage}}</p>
@@ -6,14 +6,17 @@
 
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <div>
-    <input type="text" placeholder="Username" formControlName="username">
+    <label for="username">Nom</label>
+    <input type="text" placeholder="Introdueix el teu nom" formControlName="username">
   </div>
   <div>
-    <input type="text" placeholder="Email" formControlName="email">
+    <label for="email">Correu electrònic</label>
+    <input type="text" placeholder="Introdueix un correu electrònic" formControlName="email">
   </div>
   <div>
+    <label for="password">Contrasenya</label>
     <input type="password" placeholder="Password" formControlName="password">
   </div>
   <button type="submit">Sign Up</button>
-  <p>Ja tens un compte? <a [routerLink]="['/auth/login']">Log in</a></p>
+  <p>Ja tens un compte? <a [routerLink]="['/auth/login']">Inicia sessió</a></p>
 </form>

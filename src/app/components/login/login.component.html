@@ -1,18 +1,20 @@
-<main>
-  <h1>Login</h1>
-  
-  @if(errorMessage){
-    <p>{{errorMessage}}</p>
-  }
-  
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div>
-      <input type="text" placeholder="Email" formControlName="email">
-    </div>
-    <div>
-      <input type="password" placeholder="Password" formControlName="password">
-    </div>
-    <button type="submit">Log In</button>
-  </form>
-  <p>No tens un compte? <a [routerLink]="['/auth/signup']">Regístrate</a></p>
-</main>
+<h1>Inicia Sessió</h1>
+
+@if(errorMessage){
+<p>{{errorMessage}}</p>
+}
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="email">Correu electrònic</label>
+    <input type="text" placeholder="Introdueix el teu correu electrònic" formControlName="email">
+  </div>
+  <div>
+    <label for="password">Contrasenya</label>
+    <input type="password" placeholder="Password" formControlName="password">
+  </div>
+  <button type="submit">Log In</button>
+</form>
+<p>No tens un compte?
+  <a [routerLink]="['/auth/signup']">Registra't</a>
+</p>

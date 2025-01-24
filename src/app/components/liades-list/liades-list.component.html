@@ -1,28 +1,36 @@
-<div class="liades-container">
+<div class="col-1-5 m-bottom-6">
 
-  <div>
-    <h1>Les teves liades</h1>
-    <button [routerLink]="['/liades/add']">
-      <p>Add liada</p>
+  <div class="row-0 align-bottom sticky-header">
+    <h1 class="rubik-medium fill">Els teus malsons</h1>
+    <button class="btn btn-primary" [routerLink]="['/liades/add']">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
+        <line x1="7.08337" y1="0.5" x2="7.08337" y2="14.5" stroke="white" stroke-width="2.5"/>
+        <line y1="7.41667" x2="14" y2="7.41667" stroke="white" stroke-width="2.5"/>
+        </svg>
+        <p>Afegeix</p>
     </button>
   </div>
 
-  <ul class="cards" *ngIf="liades.length; else noLiades">
-    <li class="card row-layout" *ngFor="let liada of liades">
+  <ul class="col-1" *ngIf="liades.length; else noLiades">
+    <li class="card row-0 align-center" *ngFor="let liada of liades">
 
-      <button [routerLink]="['/liades/delete', liada.id]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="13" fill="#D51922" stroke="white" stroke-width="2" />
+      <p class="rubik-large p-1">{{ liada.times }}</p>
+
+      <div class="col-1 p-1 border-x fill">
+        <p>{{ liada.name }}</p>
+        <div class="row-0-5">
+          <button class="btn btn-primary fill" (click)="incrementByOne(liada.id)">💀 Again?</button>
+          <button class="btn btn-secondary" (click)="decrementByOne(liada.id)">-1</button>
+        </div>
+      </div>
+
+      <button class="p-1" [routerLink]="['/liades/delete', liada.id]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
           <path
-            d="M14.3613 15.5307L14.008 15.1777L13.6546 15.5307L8.9408 20.2391L8.94075 20.2391L8.93455 20.2455C8.85772 20.325 8.76577 20.3885 8.66405 20.4322C8.56232 20.4759 8.45289 20.499 8.34212 20.5C8.23136 20.501 8.12152 20.4799 8.01901 20.4381C7.9165 20.3963 7.8234 20.3345 7.74512 20.2564C7.66684 20.1783 7.60495 20.0854 7.56304 19.9832C7.52112 19.881 7.50001 19.7715 7.50092 19.6611C7.50183 19.5507 7.52474 19.4416 7.56833 19.3401C7.61192 19.2386 7.67533 19.1467 7.75488 19.0699L7.75493 19.0699L7.76091 19.064L12.4765 14.3538L12.8307 14L12.4765 13.6462L7.75999 8.93599L7.76004 8.93594L7.754 8.9301C7.67444 8.85328 7.61103 8.76143 7.56744 8.65994C7.52385 8.55844 7.50094 8.44931 7.50003 8.33891C7.49912 8.2285 7.52023 8.11901 7.56215 8.01682C7.60406 7.91462 7.66595 7.82175 7.74423 7.74363C7.82251 7.66552 7.91561 7.60372 8.01812 7.56189C8.12063 7.52005 8.23047 7.49902 8.34123 7.50003C8.452 7.50105 8.56144 7.52409 8.66316 7.56779C8.76488 7.61149 8.85683 7.67497 8.93366 7.75451L8.9336 7.75456L8.93991 7.76087L13.6546 12.4702L14.008 12.8232L14.3614 12.4702L19.0752 7.76083L19.0752 7.76078C19.1526 7.68346 19.2445 7.62209 19.3457 7.5802C19.4469 7.53831 19.5553 7.51673 19.6649 7.5167C19.7745 7.51668 19.8829 7.53821 19.9841 7.58005C20.0853 7.62189 20.1773 7.68322 20.2547 7.76051C20.3321 7.83779 20.3935 7.92952 20.4353 8.03043C20.4772 8.13134 20.4988 8.23949 20.4988 8.34869C20.4988 8.4579 20.4773 8.56605 20.4355 8.66699C20.3937 8.76792 20.3323 8.85968 20.2549 8.937L15.5395 13.6462L15.1852 14L15.5395 14.3538L20.2559 19.0631C20.2559 19.0631 20.256 19.0631 20.256 19.0632C20.4123 19.2193 20.5 19.431 20.5 19.6516C20.5 19.8722 20.4123 20.0838 20.2559 20.24C20.0996 20.3962 19.8874 20.4841 19.666 20.4841C19.4446 20.4841 19.2324 20.3962 19.076 20.24L14.3613 15.5307Z"
-            fill="white" stroke="white" />
+            d="M7 21.5C6.45 21.5 5.97933 21.3043 5.588 20.913C5.19667 20.5217 5.00067 20.0507 5 19.5V6.5H4V4.5H9V3.5H15V4.5H20V6.5H19V19.5C19 20.05 18.8043 20.521 18.413 20.913C18.0217 21.305 17.5507 21.5007 17 21.5H7ZM9 17.5H11V8.5H9V17.5ZM13 17.5H15V8.5H13V17.5Z"
+            fill="#D51922" />
         </svg>
       </button>
-
-      <p>{{ liada.name }}</p>
-      <p class="rubik-large">{{ liada.times }}</p>
-      <button (click)="incrementByOne(liada.id)">Add 1</button>
-      <button (click)="decrementByOne(liada.id)">-1</button>
     </li>
   </ul>
 

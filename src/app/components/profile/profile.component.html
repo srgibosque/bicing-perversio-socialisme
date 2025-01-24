@@ -1,7 +1,11 @@
-<div *ngIf="user">
-  <p>Welcome, {{ user.displayName || user.email }}!</p>
-  <p>Email: {{ user.email }}</p>
-  <p>UID: {{ user.uid }}</p>
+<div class="col-1-5">
+  <div class="col-1-5" *ngIf="user">
+    <h2 class="rubik-medium">Welcome, {{ user.displayName || user.email }}!</h2>
+    <div class="card col-0-5 p-1">
+      <p class="label">Correu electrònic</p>
+      <p>{{ user.email }}</p>
+    </div>
+  </div>
+  
+  <button class="btn btn-secondary fill" (click)="logout()">logout</button>
 </div>
-
-<button (click)="logout()">logout</button>

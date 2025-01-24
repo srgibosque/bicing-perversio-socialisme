@@ -1,20 +1,31 @@
-<h1>Inicia Sessió</h1>
-
-@if(errorMessage){
-<p>{{errorMessage}}</p>
-}
-
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div class="col-3">
   <div>
-    <label for="email">Correu electrònic</label>
-    <input type="text" placeholder="Introdueix el teu correu electrònic" formControlName="email">
+    <img class="img" src="../../../assets/icons/Bicing_logo.svg" alt="logo-bicing">
+    <p class="rubik-large">perversió</p>
+    <p class="color-red rubik-large">i socialisme</p>
   </div>
-  <div>
-    <label for="password">Contrasenya</label>
-    <input type="password" placeholder="Password" formControlName="password">
+  
+  <div class="card p-1-5 col-1-5">
+    <h1 class="rubik-medium">Inicia Sessió</h1>
+    
+    @if(errorMessage){
+    <p>{{errorMessage}}</p>
+    }
+    
+    <form class="col-1" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="col-0-5">
+        <label class="label" for="email">Correu electrònic</label>
+        <input class="input" type="text" placeholder="Introdueix el teu correu electrònic" formControlName="email">
+      </div>
+      <div class="col-0-5">
+        <label class="label" for="password">Contrasenya</label>
+        <input class="input" type="password" placeholder="Introdueix la contrasenya" formControlName="password">
+      </div>
+      <button class="btn btn-primary" type="submit">Inicia sessió</button>
+    </form>
+    <p>No tens un compte?
+      <a class="link" [routerLink]="['/auth/signup']">Registra't</a>
+    </p>
   </div>
-  <button type="submit">Log In</button>
-</form>
-<p>No tens un compte?
-  <a [routerLink]="['/auth/signup']">Registra't</a>
-</p>
+</div>
+

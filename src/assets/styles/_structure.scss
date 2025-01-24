@@ -64,9 +64,9 @@ body {
   gap: 8px;
 }
 
-.floating{
+.floating {
   position: absolute;
-  top: -16px; 
+  top: -16px;
   right: -16px;
   cursor: pointer;
 }
@@ -96,6 +96,26 @@ body {
 .icon-btn {
   display: flex;
   padding: 4px;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 1rem;
+  left:50%;
+  transform: translateX(-50%); /* Center it vertically */
+  display: flex;
+  padding: 0.25rem;
+  align-items: center;
+}
+
+.navbar-item {
+  display: flex;
+  min-width: 8rem;
+  padding: 0.75rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  flex: 1 0 0;
 }
 
 .modal-overlay {

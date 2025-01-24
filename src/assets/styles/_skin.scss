@@ -71,6 +71,17 @@ button {
   padding: 0.6rem;
 }
 
+.navbar{
+  background-color: aqua;
+  border-radius: 1.5rem;
+}
+
+.navbar-item{
+  border-radius: 1.5rem;
+  background-color: black;
+  color: white;
+}
+
 .modal-overlay {
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(3px);

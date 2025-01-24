@@ -10,7 +10,7 @@
   <ul class="cards" *ngIf="liades.length; else noLiades">
     <li class="card row-layout" *ngFor="let liada of liades">
 
-      <button *ngIf="isDeleteButtonShown" class="floating" (click)="deleteLiada(liada.id)">
+      <button (click)="deleteLiada(liada.id)">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
           <circle cx="14" cy="14" r="13" fill="#D51922" stroke="white" stroke-width="2" />
           <path
@@ -21,6 +21,8 @@
 
       <p>{{ liada.name }}</p>
       <p class="rubik-large">{{ liada.times }}</p>
+      <button (click)="incrementByOne(liada.id)">Add 1</button>
+      <button (click)="decrementByOne(liada.id)">-1</button>
     </li>
   </ul>
 

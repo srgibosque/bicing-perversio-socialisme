@@ -14,7 +14,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LiadesListComponent implements OnInit {
   liades: Liada[] = [];
-  isDeleteButtonShown = false;
   liadesFirebaseService = inject(LiadesFirebaseService);
 
   ngOnInit(): void {
@@ -24,9 +23,12 @@ export class LiadesListComponent implements OnInit {
       })
   }
 
+  incrementByOne(liadaId: string): void {
+    this.liadesFirebaseService.incrementTimes(liadaId);
+  }
 
-  toggleDeleteButton(): void {
-    this.isDeleteButtonShown = !this.isDeleteButtonShown;
+  decrementByOne(liadaId: string): void {
+    this.liadesFirebaseService.decrementTimes(liadaId);
   }
 
   deleteLiada(liadaId: string): void {

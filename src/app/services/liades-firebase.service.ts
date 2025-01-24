@@ -20,7 +20,7 @@ export class LiadesFirebaseService {
   }
 
   addLiada(name: string): Observable<string> {
-    const toCreateLiada: { name: string, times: number } = { name: name, times: 0 }
+    const toCreateLiada: { name: string, times: number } = { name: name, times: 1 }
     const promise = addDoc(this.liadesCollection, toCreateLiada)
       .then((res) => res.id);
     return from(promise);
@@ -36,6 +36,14 @@ export class LiadesFirebaseService {
     const docRef: DocumentReference = doc(this.firestore, 'liades', liadaId);
     const promise = updateDoc(docRef, {
       times: increment(1)
+    });
+    return from(promise);
+  }
+
+  decrementTimes(liadaId: string): Observable<void> {
+    const docRef: DocumentReference = doc(this.firestore, 'liades', liadaId);
+    const promise = updateDoc(docRef, {
+      times: increment(-1)
     });
     return from(promise);
   }

@@ -30,11 +30,4 @@ export class LiadesListComponent implements OnInit {
   decrementByOne(liadaId: string): void {
     this.liadesFirebaseService.decrementTimes(liadaId);
   }
-
-  deleteLiada(liadaId: string): void {
-    this.liadesFirebaseService.deleteLiada(liadaId).subscribe(() => {
-      console.log('Liada deleted successfully!');
-      this.liades = this.liades.filter(liada => liada.id !== liadaId);
-    })
-  }
 }

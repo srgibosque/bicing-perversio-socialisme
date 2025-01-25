@@ -142,6 +142,10 @@
     color: white;
     transition: background-color 0.2s ease;
 
+    &:hover {
+      background-color: $secondary-color-black-light
+    }
+
     &.active {
       background-color: $secondary-color-black-lighter;
     }

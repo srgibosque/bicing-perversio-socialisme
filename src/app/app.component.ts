@@ -1,26 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {  RouterModule } from '@angular/router';
-
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
-import { AuthService } from './services/auth.service';
-
+import {  RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent], 
+  imports: [RouterModule], 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'bicing-perversio-socialisme';
-  isUserLoggedIn = false;
-  authStateObs$ = inject(AuthService).authState$;
-
-  ngOnInit() {
-    this.authStateObs$.subscribe((user) => {
-      this.isUserLoggedIn = !!user;
-    });
-  };
 }

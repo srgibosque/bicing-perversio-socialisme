@@ -40,7 +40,7 @@
   }
 
   .rubik-regular {
-    @include rubik(400, 1rem);
+    @include rubik(400, 0.875rem);
   }
 
   .rubik-medium {
@@ -49,6 +49,10 @@
 
   .rubik-large {
     @include rubik(600, 1.5rem);
+  }
+
+  .text-center {
+    text-align: center;
   }
 
   .color-red {
@@ -61,10 +65,12 @@
     background-color: $secondary-color-white;
     border: 2px solid $secondary-color-black;
     border-radius: 1rem;
+    overflow: hidden;
   }
 
   .btn {
     border-radius: 1.5rem;
+    transition: transform 0.05s ease, background-color 0.2s ease;
 
     &.btn-primary {
       color: $secondary-color-white;
@@ -75,7 +81,12 @@
 
       &:hover:not(:disabled) {
         background-color: $primary-color-dark;
+      }
+
+      &:active {
+        transform: translateY(2px);
         box-shadow: none;
+        background-color: $primary-color-dark;
       }
 
       &:disabled {
@@ -93,8 +104,13 @@
       box-shadow: 0px 2px 0px 0px $primary-color;
 
       &:hover:not(:disabled) {
-        background-color: $primary-color-dark;
+        background-color: $secondary-color-white-dark
+      }
+
+      &:active {
+        transform: translateY(2px);
         box-shadow: none;
+        background-color: $secondary-color-white-dark;
       }
 
       &:disabled {
@@ -102,6 +118,16 @@
         border-color: $disabled;
         box-shadow: none;
       }
+    }
+  }
+
+  .card-button {
+    &:hover{
+      background-color: $secondary-color-white-dark;
+    }
+
+    &:active{
+      background-color: $primary-color-light;
     }
   }
 
@@ -114,6 +140,7 @@
   .navbar-item {
     border-radius: 1.5rem;
     color: white;
+    transition: background-color 0.2s ease;
 
     &.active {
       background-color: $secondary-color-black-lighter;

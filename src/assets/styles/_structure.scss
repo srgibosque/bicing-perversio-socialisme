@@ -38,6 +38,10 @@
     margin: 0 auto;
   }
 
+  .min-width-48 {
+    min-width: 48px;
+  }
+
   .col-0-5 {
     @include layout(column, 0.5rem);
   }
@@ -93,6 +97,15 @@
   .input {
     padding: 0.8rem;
     width: 100%;
+  }
+
+  .card-button {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
   }
 
   .navbar {
